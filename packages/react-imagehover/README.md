@@ -15,42 +15,33 @@ A react components
 
 ## Usage
 
-````tsx
-import { ImageHover } from 'react-imagehover';
+```tsx
+import { ImageHover } from 'react-imagehover'
 
-<ImageHover.div>
-  <div>
-    // your front layer content
-  </div>
-  <div>
-    // your back layer content
-  </div>
-</ImageHover.div>
-```,
+;<ImageHover>
+  <div>// your front layer content</div>
+  <div>// your back layer content</div>
+</ImageHover>
+```
 
 ## Hook
 
 ```tsx
-import { ImageHover, useImageHover } from 'react-imagehover';
+import { ImageHover, useImageHover } from 'react-imagehover'
 
 function App() {
-
-  const [frontStyle, backStyle] = useImageHover({
+  const [frontProps, backProps] = useImageHover({
     effect: 'reveal-right',
     mode: 'hover',
     duration: 0.35,
     speed: 'fast'
-  });
+  })
 
   return (
     <ImageHover.div>
-      <div style={frontStyle}>
-        // your front layer content
-      </div>
-      <div style={backStyle}>
-        // your back layer content
-      </div>
+      <div {...frontProps}>// your front layer content</div>
+      <div {...backProps}>// your back layer content</div>
     </ImageHover.div>
   )
 }
-````
+```
