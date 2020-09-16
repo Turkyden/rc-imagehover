@@ -14,7 +14,7 @@ storiesOf('ImageHover', module)
   .addDecorator(withKnobs)
   .add('with fixed A minor', () => (
     <ImageHover>
-      <img src="https://jdc.jd.com/img/200x200" />
+      <img src="https://jdc.jd.com/img/200x200?text=%20" />
       <figcaption>Hello World !</figcaption>
     </ImageHover>
   ))
