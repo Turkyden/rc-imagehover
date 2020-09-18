@@ -1,22 +1,17 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import React, { ReactElement, useRef } from 'react'
-import useImageHover from './hooks'
+import React, { ReactElement } from 'react'
 
 interface ImageHoverProps {
   children: Array<ReactElement>
 }
 
-const imghoverStyle = css`
+const base = css`
   position: relative;
   display: inline-block;
-  margin: 0;
-  max-width: 100%;
   background-color: #2266a5;
   color: #fff;
   overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -42,8 +37,9 @@ const imghoverStyle = css`
     box-sizing: border-box;
     transition: all 0.35s ease;
   }
+`
 
-  /** reveal **/
+const reveal = css`
   &:before {
     position: absolute;
     top: 0;
@@ -67,6 +63,12 @@ const imghoverStyle = css`
     opacity: 1;
     transition-delay: 0.21s;
   }
+`
+
+const imghoverStyle = css`
+  ${base};
+
+  ${reveal};
 
   /** reveal-right **/
   &:before {
@@ -75,12 +77,15 @@ const imghoverStyle = css`
   }
 `
 
-export default function ImageHover(props: ImageHoverProps) {
-  return (
-    <React.Fragment>
-      <figure css={imghoverStyle}>{...props.children}</figure>
-    </React.Fragment>
-  )
+interface ImageHoverProps {
+  effect: string
+  duration?: number
+  speed?: number
+  children: Array<ReactElement>
 }
 
-export { useImageHover }
+export default function ImageHover(props: ImageHoverProps) {
+  const { effect, duration, speed, children } = props
+
+  return <figure css={imghoverStyle}>{...children}</figure>
+}
